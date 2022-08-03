@@ -24,13 +24,26 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      isEmailValid: true,
-      reason: "",
-      reasonInvalid: [],
-      description: "",
-      desciptionInvalid: [],
-    };
+        email: "",
+        isEmailValid: true,
+        reason: "",
+        reasonInvalid: [],
+        description: "",
+        desciptionInvalid: [],
+        isLoading: false
+      };
+  }
+
+  initState() {
+    this.setState({
+        email: "",
+        isEmailValid: true,
+        reason: "",
+        reasonInvalid: [],
+        description: "",
+        desciptionInvalid: [],
+        isLoading: false
+      });
   }
 
   validateEmail() {
@@ -66,11 +79,29 @@ class Contact extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
+    if(this.state.isLoading) return;
     let isValidEmail = this.validateEmail();
     let isValidReason = this.validateReason();
     let isValidDescription = this.validateDescription();
     if (isValidDescription && isValidEmail && isValidReason) {
+        this.sendEmail({email: this.state.email, reason: this.state.reason, description: this.state.description});
     }
+  }
+
+  sendEmail(body) {
+    this.setState({isLoading: true});
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    };
+    fetch('https://reqres.in/api/posts', requestOptions)
+        .then(response => response.json())
+        .then(data =>  {
+            this.initState();
+        }).catch(error => {
+            this.setState({isLoading: true});
+        });
   }
 
   setInput(e) {
@@ -101,7 +132,7 @@ class Contact extends React.Component {
               type="text"
               name="reason"
               required
-              value={this.reason}
+              value={this.state.reason}
               max="20"
               onChange={(e) => {
                 this.setInput(e);
@@ -115,7 +146,7 @@ class Contact extends React.Component {
               type="text"
               name="description"
               required
-              value={this.description}
+              value={this.state.description}
               max="100"
               onChange={(e) => {
                 this.setInput(e);
@@ -123,7 +154,8 @@ class Contact extends React.Component {
             />
             <Errors errors={this.state.desciptionInvalid}></Errors>
           </div>
-          <button type="submit">Send Mail</button>
+          <button type="submit" disabled={this.state.isLoading}>Send Mail</button>
+          {this.state.isLoading ? <div>Loading ...</div> : <></> }
         </form>
       </div>
     );
