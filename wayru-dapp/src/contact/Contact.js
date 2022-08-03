@@ -9,7 +9,7 @@ class Errors extends React.Component {
         {(this.props.errors && this.props.errors.length > 0) ? (
           <div>
             {this.props.errors.map((error) => (
-              <div>{ error }</div>
+              <div className="error">{ error }</div>
             ))}
           </div>
         ) : (
@@ -93,7 +93,7 @@ class Contact extends React.Component {
                 this.setInput(e);
               }}
             />
-            {!this.state.isEmailValid ? "The email is invalid" : <></>}
+            {!this.state.isEmailValid ? <Errors errors={["The email is invalid"]}></Errors> : <></>}
           </div>
           <div>
             <label htmlFor="reason">Reason:</label>
