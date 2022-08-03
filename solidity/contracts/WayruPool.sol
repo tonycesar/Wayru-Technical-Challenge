@@ -18,8 +18,10 @@ contract WayruPool {
     }
 
     function withdraw() external onlyOwner {
+        uint currentBalance = address(this).balance;
+        require(currentBalance > 0, "Don't have funds");
         address payable to = payable(msg.sender);
-        to.transfer(address(this).balance);
+        to.transfer(currentBalance);
     }
 
     function transferOwnerTo(address _newOwner) external {}
