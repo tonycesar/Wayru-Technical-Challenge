@@ -32,6 +32,7 @@ class Contact extends React.Component {
         desciptionInvalid: [],
         isLoading: false
       };
+    console.log(process.env);
   }
 
   initState() {
@@ -95,7 +96,7 @@ class Contact extends React.Component {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
     };
-    fetch('https://reqres.in/api/posts', requestOptions)
+    fetch(process.env.REACT_APP_APIURL+'/contact', requestOptions)
         .then(response => response.json())
         .then(data =>  {
             this.initState();
