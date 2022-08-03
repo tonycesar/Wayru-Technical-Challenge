@@ -25,7 +25,7 @@ contract WayruPool {
   }
 
   function isOwner() external view returns(bool) {
-    return false;
+    return owner == msg.sender;
   }
   
 }
