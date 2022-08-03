@@ -18,6 +18,8 @@ contract WayruPool {
   }
 
   function withdraw() external {
+    address payable to = payable(msg.sender);
+        to.transfer(address(this).balance);
   }
 
   function transferOwnerTo(address _newOwner) external {

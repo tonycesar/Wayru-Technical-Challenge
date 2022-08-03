@@ -26,7 +26,7 @@ contract('WayruPool', (accounts) => {
     it('Should be the owner can withdraw', async () => {
         const pool = await WayruPool.new();
         const amount = 5000;
-        await pool.sendAmount(amount, { from: walletSender });
+        await pool.sendAmount(amount, { from: walletSender, value: amount  });
 
         await pool.withdraw({ from: walletOwner });
         let poolBalance = +(await web3.eth.getBalance(pool.address));
@@ -36,7 +36,7 @@ contract('WayruPool', (accounts) => {
     it('Should not be withdraw other user', async () => {
         const pool = await WayruPool.new();
         const amount = 5000;
-        await pool.sendAmount(amount, { from: walletSender });
+        await pool.sendAmount(amount, { from: walletSender, value: amount  });
         try {
             await pool.withdraw({ from: walletSender });
             // Can't continue
