@@ -1,5 +1,6 @@
 import './App.scss';
 import Contact  from './contact/Contact';
+import DApp from './dapp/Dapp';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <header className="App-header">
         <h1>César Calle Dapp Wayru </h1>
       </header>
+      <DApp></DApp>
       <Contact></Contact>
     </div>
   );
