@@ -10,7 +10,7 @@ contract('WayruPool', (accounts) => {
         const amount = 5000;
         let initialBalance = +(await web3.eth.getBalance(pool.address));
         assert.equal(0, initialBalance);
-        await pool.sendAmount(amount, { from: walletSender });
+        await pool.sendAmount(amount, { from: walletSender, value: amount });
         let poolBalance = +(await web3.eth.getBalance(pool.address));
         assert.equal(amount, poolBalance);
     })
