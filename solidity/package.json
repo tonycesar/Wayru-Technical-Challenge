@@ -1,0 +1,19 @@
+{
+  "name": "wayru-pool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "truffle build",
+    "test": "truffle test",
+    "truffle": "truffle"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.2"
+  },
+  "devDependencies": {
+    "truffle": "^5.5.24"
+  }
+}
