@@ -24,7 +24,9 @@ contract WayruPool {
         to.transfer(currentBalance);
     }
 
-    function transferOwnerTo(address _newOwner) external {}
+    function transferOwnerTo(address _newOwner) external onlyOwner{
+      owner = _newOwner;
+    }
 
     modifier onlyOwner() {
         require(msg.sender == owner, "You are not allowed");
