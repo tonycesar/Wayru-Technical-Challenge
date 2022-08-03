@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { Mailer } from './src/mailer';
+import serverless from 'serverless-http';
 
 dotenv.config();
 
@@ -36,6 +37,4 @@ app.post('/contact', (req: Request, res: Response) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+module.exports.handler = serverless(app);
