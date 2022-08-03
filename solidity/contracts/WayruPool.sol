@@ -12,10 +12,9 @@ contract WayruPool {
   }
 
   function withdraw() external {
-    
   }
 
-  function transferOwnerTo(address owner) external {
+  function transferOwnerTo(address _newOwner) external {
 
   }
 
