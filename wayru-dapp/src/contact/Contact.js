@@ -1,24 +1,5 @@
 import React from "react";
-import "./Contact.scss";
-
-class Errors extends React.Component {
-
-  render() {
-    return (
-      <>
-        {(this.props.errors && this.props.errors.length > 0) ? (
-          <div>
-            {this.props.errors.map((error) => (
-              <div className="error">{ error }</div>
-            ))}
-          </div>
-        ) : (
-          <></>
-        )}
-      </>
-    );
-  }
-}
+import Errors from "../errors/Errors";
 
 class Contact extends React.Component {
   constructor(props) {
@@ -114,6 +95,7 @@ class Contact extends React.Component {
       <div>
         <form onSubmit={(e) => this.onSubmit(e)}>
           <h2>Conctact form</h2>
+          <p>Plesea write if you have any question about this pool</p>
           <div>
             <label htmlFor="email">Email:</label>
             <input

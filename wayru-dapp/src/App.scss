@@ -16,3 +16,43 @@
 body {
   background-color: variables.$background-color;
 }
+
+content {
+  display: flex;
+  flex-direction: row;
+  section {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    * {
+      max-width: 500px;
+      margin: auto;
+    }
+  }
+  
+}
+@media screen and ( max-width: 500px ) { 
+  content { flex-direction: column; 
+    section {
+      width: calc(100% - 40px);
+    }}
+}
+
+h1, h2, h3,h4 {
+  margin-bottom: 20px !important;
+}
+
+h4 {
+  margin-top: 20px !important;
+  font-style: italic;
+}
+
+input, button, p {
+  padding: 10px;
+}
+
+label {
+  padding: 10px;
+  margin: 10px;
+}
